@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import MovieCard from "./MovieCard";
 import axios from "axios";
+import Proptypes from "prop-types";
 
 const MediaList = ({ title, tabs }) => {
   const [allMoview, setAllMoview] = useState([]);
@@ -43,7 +44,8 @@ const MediaList = ({ title, tabs }) => {
           releaseDate={movie.release_date || movie.first_air_date || ""}
           poster={movie.poster_path || movie.profile_path || "unknow"}
           point={movie.vote_average || 0}
-          mediaType={movie.media_type}
+          mediaType={movie.media_type || ""}
+          id={movie.id}
         />
       );
     });
@@ -78,6 +80,11 @@ const MediaList = ({ title, tabs }) => {
       </div>
     </>
   );
+};
+
+MediaList.propTypes = {
+  title: Proptypes.string.isRequired,
+  tabs: Proptypes.array.isRequired,
 };
 
 export default MediaList;

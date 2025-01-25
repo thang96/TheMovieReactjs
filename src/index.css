@@ -8,27 +8,27 @@
 @font-face {
   font-family: "Netflix Sans";
   src: local("NetflixSans-Regular"),
-    url("./font/NetflixSans-Regular.woff2") format("woff2");
+    url("/font/NetflixSans-Regular.woff2") format("woff2");
 }
 
 @font-face {
   font-family: "Netflix Sans";
   src: local("NetflixSans-Bold"),
-    url("./font/NetflixSans-Bold.woff2") format("woff2");
+    url("/font/NetflixSans-Bold.woff2") format("woff2");
   font-weight: bold;
 }
 
 @font-face {
   font-family: "Netflix Sans";
   src: local("NetflixSans-Medium"),
-    url("./font/NetflixSans-Medium.woff2") format("woff2");
+    url("/font/NetflixSans-Medium.woff2") format("woff2");
   font-weight: 600;
 }
 
 @font-face {
   font-family: "Netflix Sans";
   src: local("NetflixSans-Light"),
-    url("./font/NetflixSans-Light.woff2") format("woff2");
+    url("/font/NetflixSans-Light.woff2") format("woff2");
   font-weight: 300;
 }
 
