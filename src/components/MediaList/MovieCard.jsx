@@ -18,7 +18,7 @@ const MovieCard = ({ title, releaseDate, poster, point, mediaType, id }) => {
               ? "Movie"
               : "People"}
         </p>
-        <img src={poster == "unknow" ? "./user.png" : urlImage} alt="" />
+        <img src={poster == "unknow" ? "./actor_no_image.svg" : urlImage} alt="" />
         <div className="relative -top-[1.5vw] px-4">
           <CircularProgressBar
             percent={Math.round(point * 10)}

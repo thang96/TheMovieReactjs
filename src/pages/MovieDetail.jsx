@@ -47,7 +47,7 @@ const MovieDetail = () => {
   return (
     <div>
       <Banner movie={movie} />
-      <div className="bg-black/100 text-white">
+      <div className="bg-black/100 text-white text-[1.2vw]">
         <div className="mx-auto flex max-w-screen-xl gap-6 px-6 py-10">
           <div className="flex-[2]">
             <ActorList actors={movie?.credits?.cast || []} />
