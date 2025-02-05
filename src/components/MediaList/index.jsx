@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import MovieCard from "./MovieCard";
 import axios from "axios";
 import Proptypes from "prop-types";
+import MovieCard from "@components/MovieCard";
 
 const MediaList = ({ title, tabs }) => {
   const [allMoview, setAllMoview] = useState([]);

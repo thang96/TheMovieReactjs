@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import CircularProgressBar from "../CircularProgressBar";
 import PropTypes from "prop-types";
+import CircularProgressBar from "./CircularProgressBar";
 
 const MovieCard = ({ title, releaseDate, poster, point, mediaType, id }) => {
   const urlImage =
@@ -9,8 +9,11 @@ const MovieCard = ({ title, releaseDate, poster, point, mediaType, id }) => {
       : `https://image.tmdb.org/t/p/w500${poster}`;
 
   return (
-    <Link to={`/movie/${id}`}>
-      <div className="relative cursor-pointer rounded-lg border border-slate-800">
+    <Link
+      to={`/movie/${id}`}
+      className="cursor-pointer rounded-lg border border-slate-800"
+    >
+      <div className="relative">
         <p className="absolute top-1 right-1 rounded bg-black/[.54] p-1 text-sm font-bold text-slate-100 shadow-md">
           {mediaType === "tv"
             ? "TV Show"
@@ -18,7 +21,10 @@ const MovieCard = ({ title, releaseDate, poster, point, mediaType, id }) => {
               ? "Movie"
               : "People"}
         </p>
-        <img src={poster == "unknow" ? "./actor_no_image.svg" : urlImage} alt="" />
+        <img
+          src={poster == "unknow" ? "./actor_no_image.svg" : urlImage}
+          alt=""
+        />
         <div className="relative -top-[1.5vw] px-4">
           <CircularProgressBar
             percent={Math.round(point * 10)}
