@@ -1,38 +1,16 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { useState } from "react";
 import Proptypes from "prop-types";
 import MovieCard from "@components/MovieCard";
+import useFetch from "@hooks/useFetch";
 
 const MediaList = ({ title, tabs }) => {
-  const [allMoview, setAllMoview] = useState([]);
   const [activeTabId, setActiveTabId] = useState(tabs[0]?.id);
+  const url = tabs.find((tab) => tab.id === activeTabId)?.url;
+  const { data } = useFetch({
+    url,
+  });
 
-  useEffect(() => {
-    const options = {
-      method: "GET",
-      headers: {
-        accept: "application/json",
-        Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxMjBjZDA2M2QxNTE5ZjU2NzhiNDZkYTU1MjQzOTM4NSIsIm5iZiI6MTczNzYyNDI2NC4wNzMsInN1YiI6IjY3OTIwYWM4NTE0OGY4NzY3Y2ZhNzQwYiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.JHetwUsDNKNUDKnHBFDxOE2KLAMSWbvJFRyjIRRX2K4",
-      },
-    };
-    const url = tabs.find((tab) => tab.id === activeTabId)?.url;
-
-    const getAllTrending = async () => {
-      await axios
-        .get(url, options)
-        .then((res) => {
-          // const trendingMediaList = res.data.results.slice(0, 12);
-          setAllMoview(res.data.results);
-        })
-        .catch((error) => {
-          alert(error);
-        });
-    };
-    if (url) {
-      getAllTrending();
-    }
-  }, [activeTabId, tabs]);
+  const allMoview = data.results || [];
 
   const renderAllMovie = () => {
     if (!allMoview || allMoview.length == 0) return;

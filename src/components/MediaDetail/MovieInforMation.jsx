@@ -1,8 +1,8 @@
+import ImageComponent from "@components/ImageComponent";
 import { currencyFormatter } from "@libs/utils";
+import PropTypes from "prop-types";
 
 const MovieInforMation = ({ mediaInfo = {} }) => {
-  console.log(mediaInfo);
-
   return (
     <div className="">
       <p className="mb-4 text-[1.4vw] font-bold">Information</p>
@@ -14,10 +14,11 @@ const MovieInforMation = ({ mediaInfo = {} }) => {
         <p className="font-bold">Originnal Country</p>
         {(mediaInfo?.origin_country || []).map((country) => {
           return (
-            <img
+            <ImageComponent
               key={country}
               src={`https://flagcdn.com/48x36/${country.toLowerCase()}.png`}
-              alt=""
+              width={48}
+              height={36}
             />
           );
         })}
@@ -37,5 +38,7 @@ const MovieInforMation = ({ mediaInfo = {} }) => {
     </div>
   );
 };
-
+MovieInforMation.propTypes = {
+  mediaInfo: PropTypes.object,
+};
 export default MovieInforMation;

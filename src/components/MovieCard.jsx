@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import CircularProgressBar from "./CircularProgressBar";
+import ImageComponent from "./ImageComponent";
 
 const MovieCard = ({ title, releaseDate, poster, point, mediaType, id }) => {
   const urlImage =
@@ -10,7 +11,7 @@ const MovieCard = ({ title, releaseDate, poster, point, mediaType, id }) => {
 
   return (
     <Link
-      to={`/movie/${id}`}
+      to={mediaType === "tv" ? `/tv/${id}` : `/movie/${id}`}
       className="cursor-pointer rounded-lg border border-slate-800"
     >
       <div className="relative">
@@ -21,16 +22,19 @@ const MovieCard = ({ title, releaseDate, poster, point, mediaType, id }) => {
               ? "Movie"
               : "People"}
         </p>
-        <img
+        <ImageComponent
+          className="w-full rounded-lg"
           src={poster == "unknow" ? "./actor_no_image.svg" : urlImage}
-          alt=""
+          width={210}
+          height={300}
         />
+
         <div className="relative -top-[1.5vw] px-4">
           <CircularProgressBar
             percent={Math.round(point * 10)}
             strokeColor={point < 5 ? "red" : point < 7.5 ? "yellow" : "green"}
           />
-          <p className="mt-2 font-bold">{title}</p>
+          <p className="mt-2 font-bold text-[1.2vw]">{title}</p>
           <p className="text-slate-300">{releaseDate}</p>
         </div>
       </div>
@@ -39,14 +43,12 @@ const MovieCard = ({ title, releaseDate, poster, point, mediaType, id }) => {
 };
 
 MovieCard.propTypes = {
-  title: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-  releaseDate: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-    .isRequired,
-  poster: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-  point: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-  mediaType: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-    .isRequired,
-  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  title: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  releaseDate: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  poster: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  point: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  mediaType: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
 
 export default MovieCard;

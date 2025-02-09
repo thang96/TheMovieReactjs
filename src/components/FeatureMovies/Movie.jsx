@@ -1,24 +1,34 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay } from "@fortawesome/free-solid-svg-icons";
 import PropTypes from "prop-types";
+import ImageComponent from "@components/ImageComponent";
+import { useModalContext } from "@context/ModalProvider";
 
-const Movie = (props) => {
-  const { backdrop_path, original_title, release_date, overview } = props.data;
+const Movie = ({
+  backdropPath,
+  originalTitle,
+  releaseDate,
+  overview,
+  trailerVideoKey,
+}) => {
+  const { setisShowing, setContent } = useModalContext();
 
   return (
     <>
-      <img
-        src={`https://image.tmdb.org/t/p/original${backdrop_path}`}
-        alt=""
-        className="aspect-video brightness-50 w-full"
+      <ImageComponent
+        src={`https://image.tmdb.org/t/p/original${backdropPath}`}
+        className="aspect-video w-full brightness-50"
+        width={2000}
+        height={1000}
       />
+
       <div className="absolute bottom-[10%] left-8 w-1/2 sm:w-1/3">
-        <p className="mb-2 font-bold sm:text-[2vw]">{original_title}</p>
+        <p className="mb-2 font-bold sm:text-[2vw]">{originalTitle}</p>
         <div>
           <p className="mb-1 inline-block border border-gray-400 p-1 text-gray-400">
             PG13
           </p>
-          <p className="text-[1.2vw]">{release_date}</p>
+          <p className="text-[1.2vw]">{releaseDate}</p>
         </div>
         <div>
           <div className="mt-4 hidden text-[1.2vw] sm:block">
@@ -27,10 +37,25 @@ const Movie = (props) => {
           </div>
 
           <div className="mt-4">
-            <button className="mr-2 cursor-pointer rounded-lg bg-white px-4 py-2 text-[10px] text-black lg:text-lg">
-              <FontAwesomeIcon icon={faPlay} />
-              Trailer
-            </button>
+            {trailerVideoKey && (
+              <button
+                onClick={() => {
+                  setisShowing(true);
+                  setContent(
+                    <iframe
+                      title="Trailer"
+                      src={`https://www.youtube.com/embed/${trailerVideoKey}`}
+                      className="aspect-video w-[50vw]"
+                    ></iframe>,
+                  );
+                }}
+                className="mr-2 cursor-pointer rounded-lg bg-white px-4 py-2 text-[10px] text-black lg:text-lg"
+              >
+                <FontAwesomeIcon icon={faPlay} />
+                Trailer
+              </button>
+            )}
+
             <button className="cursor-pointer rounded-lg bg-slate-300/35 px-4 py-2 text-[10px] lg:text-lg">
               View Detail
             </button>
@@ -42,12 +67,11 @@ const Movie = (props) => {
 };
 
 Movie.propTypes = {
-  data: PropTypes.shape({
-    backdrop_path: PropTypes.string,
-    overview: PropTypes.string,
-    original_title: PropTypes.string,
-    release_date: PropTypes.string,
-  }),
+  backdropPath: PropTypes.string,
+  overview: PropTypes.string,
+  originalTitle: PropTypes.string,
+  releaseDate: PropTypes.string,
+  trailerVideoKey: PropTypes.string,
 };
 
 export default Movie;
