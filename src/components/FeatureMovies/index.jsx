@@ -40,6 +40,7 @@ const FeatureMovie = () => {
           return (
             <Movie
               key={movie.id}
+              id={movie.id}
               backdropPath={movie.backdrop_path}
               originalTitle={movie.original_title}
               releaseDate={movie.release_date}

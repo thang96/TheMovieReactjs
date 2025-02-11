@@ -3,20 +3,24 @@ import { faPlay } from "@fortawesome/free-solid-svg-icons";
 import PropTypes from "prop-types";
 import ImageComponent from "@components/ImageComponent";
 import { useModalContext } from "@context/ModalProvider";
+import { Link } from "react-router-dom";
 
 const Movie = ({
+  id,
   backdropPath,
   originalTitle,
   releaseDate,
   overview,
   trailerVideoKey,
 }) => {
-  const { setisShowing, setContent } = useModalContext();
+  const { openPopup } = useModalContext();
 
   return (
     <>
       <ImageComponent
-        src={`https://image.tmdb.org/t/p/original${backdropPath}`}
+        src={
+          backdropPath && `https://image.tmdb.org/t/p/original${backdropPath}`
+        }
         className="aspect-video w-full brightness-50"
         width={2000}
         height={1000}
@@ -40,8 +44,7 @@ const Movie = ({
             {trailerVideoKey && (
               <button
                 onClick={() => {
-                  setisShowing(true);
-                  setContent(
+                  openPopup(
                     <iframe
                       title="Trailer"
                       src={`https://www.youtube.com/embed/${trailerVideoKey}`}
@@ -55,10 +58,11 @@ const Movie = ({
                 Trailer
               </button>
             )}
-
-            <button className="cursor-pointer rounded-lg bg-slate-300/35 px-4 py-2 text-[10px] lg:text-lg">
-              View Detail
-            </button>
+            <Link to={`/movie/${id}`}>
+              <button className="cursor-pointer rounded-lg bg-slate-300/35 px-4 py-2 text-[10px] lg:text-lg">
+                View Detail
+              </button>
+            </Link>
           </div>
         </div>
       </div>
@@ -67,6 +71,7 @@ const Movie = ({
 };
 
 Movie.propTypes = {
+  id: PropTypes.number,
   backdropPath: PropTypes.string,
   overview: PropTypes.string,
   originalTitle: PropTypes.string,

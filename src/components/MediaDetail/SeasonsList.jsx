@@ -10,7 +10,6 @@ const SeasonsList = ({ seasons = [] }) => {
 
   const renderSeasons = () => {
     return currentSeaseons.map((season) => {
-      
       return (
         <Link key={season.id} to={`/tv/${season.id}`}>
           <div className="cursor-pointer" key={season.id}>
@@ -18,7 +17,10 @@ const SeasonsList = ({ seasons = [] }) => {
               <div className="w-1/3">
                 <ImageComponent
                   className="w-full rounded-lg"
-                  src={`https://image.tmdb.org/t/p/w300${season.poster_path}`}
+                  src={
+                    season.poster_path &&
+                    `https://image.tmdb.org/t/p/w300${season.poster_path}`
+                  }
                   width={210}
                   height={300}
                 />

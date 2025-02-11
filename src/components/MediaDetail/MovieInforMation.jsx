@@ -16,7 +16,10 @@ const MovieInforMation = ({ mediaInfo = {} }) => {
           return (
             <ImageComponent
               key={country}
-              src={`https://flagcdn.com/48x36/${country.toLowerCase()}.png`}
+              src={
+                country &&
+                `https://flagcdn.com/48x36/${country.toLowerCase()}.png`
+              }
               width={48}
               height={36}
             />

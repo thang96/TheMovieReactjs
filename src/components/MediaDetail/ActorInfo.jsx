@@ -1,9 +1,13 @@
 import ImageComponent from "@components/ImageComponent";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
-const ActorInfo = ({ name, character, profilePath, episodeCount }) => {
+const ActorInfo = ({ id, name, character, profilePath, episodeCount }) => {
   return (
-    <div className="overflow-hidden rounded-lg border border-slate-300 bg-black/80 text-white shadow-sm">
+    <Link
+      to={`/people/${id}`}
+      className="overflow-hidden rounded-lg border border-slate-300 bg-black/80 text-white shadow-sm"
+    >
       <ImageComponent
         className="w-full rounded-lg"
         src={
@@ -19,11 +23,12 @@ const ActorInfo = ({ name, character, profilePath, episodeCount }) => {
         <p>{character}</p>
         {episodeCount && <p>{episodeCount} Episodes</p>}
       </div>
-    </div>
+    </Link>
   );
 };
 
 ActorInfo.propTypes = {
+  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   name: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   character: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
     .isRequired,

@@ -22,7 +22,7 @@ const MediaList = ({ title, tabs }) => {
           releaseDate={movie.release_date || movie.first_air_date || ""}
           poster={movie.poster_path || movie.profile_path || "unknow"}
           point={movie.vote_average || 0}
-          mediaType={movie.media_type || ""}
+          mediaType={movie.media_type || activeTabId || ""}
           id={movie.id}
         />
       );

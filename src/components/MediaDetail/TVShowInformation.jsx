@@ -2,7 +2,6 @@ import ImageComponent from "@components/ImageComponent";
 import PropTypes from "prop-types";
 
 const TVShowInformation = ({ tvInfo = {} }) => {
-
   const renderNetworks = () => {
     return (tvInfo.networks || []).map((network) => {
       return (
@@ -21,7 +20,9 @@ const TVShowInformation = ({ tvInfo = {} }) => {
       return (
         <ImageComponent
           key={country}
-          src={`https://flagcdn.com/48x36/${country.toLowerCase()}.png`}
+          src={
+            country && `https://flagcdn.com/48x36/${country.toLowerCase()}.png`
+          }
           width={48}
           height={36}
         />

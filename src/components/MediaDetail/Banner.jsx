@@ -21,7 +21,7 @@ const Banner = ({
 }) => {
   const groupedCews = groupBy(crews, "job");
 
-  const { setisShowing, setContent } = useModalContext();
+  const { openPopup } = useModalContext();
 
   const renderGenres = () => {
     const listGenres = genres || [];
@@ -35,7 +35,9 @@ const Banner = ({
       <div className="relative overflow-hidden bg-black text-white shadow-sm shadow-slate-800">
         <ImageComponent
           className="absolute inset-0 aspect-video w-[100%] brightness-[0.2]"
-          src={`https://image.tmdb.org/t/p/original${backdropPath}`}
+          src={
+            backdropPath && `https://image.tmdb.org/t/p/original${backdropPath}`
+          }
           width={2000}
           height={1000}
         />
@@ -43,7 +45,7 @@ const Banner = ({
         <div className="relative mx-auto flex max-w-screen-xl gap-6 px-6 py-10 sm:gap-6 lg:gap-8">
           <div className="flex-1">
             <ImageComponent
-              src={`https://image.tmdb.org/t/p/w500${posterPath}`}
+              src={posterPath && `https://image.tmdb.org/t/p/w500${posterPath}`}
               width={500}
               height={800}
               className="w-full rounded-lg"
@@ -72,9 +74,9 @@ const Banner = ({
                 Rating
               </div>
               <button
+                className="cursor-pointer"
                 onClick={() => {
-                  setisShowing(true);
-                  setContent(
+                  openPopup(
                     <iframe
                       title="Trailer"
                       src={`https://www.youtube.com/embed/${trailerVideoKey}`}

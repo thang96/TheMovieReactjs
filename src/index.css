@@ -1,37 +1,46 @@
 @import "tailwindcss";
 
 @theme {
-  --text-tiny--font-size: 10; 
-  
+  --text-tiny--font-size: 10;
 }
 
 @font-face {
   font-family: "Netflix Sans";
-  src: local("NetflixSans-Regular"),
+  src:
+    local("NetflixSans-Regular"),
     url("/font/NetflixSans-Regular.woff2") format("woff2");
 }
 
 @font-face {
   font-family: "Netflix Sans";
-  src: local("NetflixSans-Bold"),
+  src:
+    local("NetflixSans-Bold"),
     url("/font/NetflixSans-Bold.woff2") format("woff2");
   font-weight: bold;
 }
 
 @font-face {
   font-family: "Netflix Sans";
-  src: local("NetflixSans-Medium"),
+  src:
+    local("NetflixSans-Medium"),
     url("/font/NetflixSans-Medium.woff2") format("woff2");
   font-weight: 600;
 }
 
 @font-face {
   font-family: "Netflix Sans";
-  src: local("NetflixSans-Light"),
+  src:
+    local("NetflixSans-Light"),
     url("/font/NetflixSans-Light.woff2") format("woff2");
   font-weight: 300;
 }
 
-body{
-  font-family: 'Netflix Sans';
+body {
+  font-family: "Netflix Sans";
+}
+
+@layer components {
+  .container {
+    @apply mx-auto flex max-w-screen-xl gap-6 px-6 py-10 sm:gap-8;
+  }
 }

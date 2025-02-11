@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 
-const ImageComponent = ({ src, width, height, className }) => {
+const ImageComponent = ({ src, width = 210, height = 300, className }) => {
   const [currentSrc, setCurrentSrc] = useState(
     `https://placehold.co/${width}x${height}?text=Loading`,
   );
@@ -24,7 +24,9 @@ const ImageComponent = ({ src, width, height, className }) => {
   return (
     <div className="">
       <img
-        className={currentSrc === src ? className : `${className} blur-md`}
+        className={
+          currentSrc === src || !src ? className : `${className} blur-md`
+        }
         src={currentSrc}
         width={width}
         height={height}

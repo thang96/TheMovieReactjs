@@ -11,11 +11,6 @@ export const TRENDING_TABS = [
   },
 
   {
-    id: "person",
-    name: "People",
-    url: "/trending/person/day?language=en-US",
-  },
-  {
     id: "tv",
     name: "TV Show",
     url: "/trending/tv/day?language=en-US",
@@ -34,3 +29,10 @@ export const TOP_RATED_TABS = [
     url: "/movie/top_rated?language=en-US&page=1",
   },
 ];
+
+export const GENDER_MAPPING = {
+  0: "Not set / not specified",
+  1: "Female",
+  2: "Male",
+  3: "Non-binary",
+};

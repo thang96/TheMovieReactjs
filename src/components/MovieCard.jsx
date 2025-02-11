@@ -20,11 +20,17 @@ const MovieCard = ({ title, releaseDate, poster, point, mediaType, id }) => {
             ? "TV Show"
             : mediaType === "movie"
               ? "Movie"
-              : "People"}
+              : ""}
         </p>
         <ImageComponent
-          className="w-full rounded-lg"
-          src={poster == "unknow" ? "./actor_no_image.svg" : urlImage}
+          className="w-full rounded-tl-lg rounded-tr-lg"
+          src={
+            poster == "unknow"
+              ? "./actor_no_image.svg"
+              : !poster
+                ? null
+                : urlImage
+          }
           width={210}
           height={300}
         />
@@ -34,7 +40,7 @@ const MovieCard = ({ title, releaseDate, poster, point, mediaType, id }) => {
             percent={Math.round(point * 10)}
             strokeColor={point < 5 ? "red" : point < 7.5 ? "yellow" : "green"}
           />
-          <p className="mt-2 font-bold text-[1.2vw]">{title}</p>
+          <p className="mt-2 text-[1.2vw] font-bold text-wrap">{title}</p>
           <p className="text-slate-300">{releaseDate}</p>
         </div>
       </div>
